@@ -15,7 +15,7 @@ routes.get("/recipes", main.recipes)
 routes.get("/recipes/:id", main.recipe)
 routes.get("/results", main.results)   
 
-// ADMINISTRATIVE AREA
+//ADMINISTRATIVE AREA
 //RECIPES
 routes.get("/admin/recipes", recipes.index)
 routes.get("/admin/recipes/create", recipes.create)
@@ -35,4 +35,26 @@ routes.put("/admin/chefs",multer.array("avatar", 1), chefs.put)
 routes.delete("/admin/chefs", chefs.delete)
 
 //USERS
+//LOGIN / LOGOUT
+//routes.get("/users/login", session.loginForm)
+//routes.post("/users/login", session.login)
+//routes.post("/users/logout", session.logout)
+
+//RESET PASSWORD / FORGOT
+// routes.get("/users/forgot-password", session.forgotForm)
+// routes.get("/users/password-reset", session.resetForm)
+// routes.post("/users/forgot-password", session.forgot)
+// routes.post("/users/password-reset", session.reset)
+
+//LOGGED USER
+//routes.get("admin/profile", userProfile.index)
+//routes.put("admin/profile", userProfile.put)
+
+//ADMIN-USER
+//routes.get("/admin/users", users.list)
 routes.get("/admin/users/create", users.createUser)
+routes.post("/admin/users", users.post)
+//routes.get("/admin/users/:id", users.show)
+//routes.put("/admin/users", users.put)
+//routes.delete("/admin/users", users.delete)
+ 

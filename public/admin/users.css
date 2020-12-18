@@ -1,0 +1,31 @@
+button.btn-cancel {
+  background-color: #8A8A8A;
+}
+
+div.user-container {
+  display: flex;
+}
+
+div.user-container div.item input {
+  width: 450px;
+}
+
+div.user-container div.item:first-child{
+  margin-right: 40px;
+}
+
+div.is-admin-checkbox {
+  display: flex;
+  align-items: baseline;
+  padding-top: 10px;
+}
+
+div.is-admin-checkbox input {
+  width: 15px;
+  height: auto;
+  margin-right: 10px;
+}
+
+div.is-admin-checkbox p {
+  font-weight: 600;
+}
