@@ -16,13 +16,24 @@
 
 <div class="user-container">
   <div class="item">
-  <h4>Nome</h4>
-  <input id="name" type="text" name="name" placeholder="Digite o nome completo">
+    <h4>Nome</h4>
+    <input 
+      id="name" 
+      type="text" 
+      name="name" 
+      placeholder="Digite o nome completo"
+      >
   </div>
 
   <div class="item">
-  <h4>Email</h4>
-  <input id="email" type="text" name="email" placeholder="Digite o seu email">
+    <h4>Email</h4>
+    <input 
+      id="email" 
+      type="text" 
+      name="email" 
+      placeholder="Digite o seu email"
+      onblur="Validate.apply(this,'isEmail')"
+      >
   </div>
 </div>
 
@@ -33,5 +44,6 @@
 
 </form>
 
+<script src="/admin/scripts.js"></script>
 
 {% endblock %}
