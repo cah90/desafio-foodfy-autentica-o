@@ -4,6 +4,7 @@ const chefs = require('./app/controllers/admin/chefs.js')
 const recipes = require('./app/controllers/admin/recipes.js')
 const users = require('./app/controllers/admin/users.js')
 const main = require('./app/controllers/main.js')
+const Validator = require('./app/validators/user.js')
 const multer = require('./app/middlewares/multer')
 
 module.exports = routes
@@ -53,7 +54,7 @@ routes.delete("/admin/chefs", chefs.delete)
 //ADMIN-USER
 //routes.get("/admin/users", users.list)
 routes.get("/admin/users/create", users.createUser)
-routes.post("/admin/users", users.post)
+routes.post("/admin/users", Validator.post, users.post)
 //routes.get("/admin/users/:id", users.show)
 //routes.put("/admin/users", users.put)
 //routes.delete("/admin/users", users.delete)
