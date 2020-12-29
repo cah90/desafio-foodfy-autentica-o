@@ -275,14 +275,3 @@ form .item #chef-photo-input {
   color: #cbcbcb;
 }
 
-/* VALIDATE ERRORS */
-.user-container input {
-  margin-bottom: 0;
-}
-
-div.error {
-  background-color: #e74c3c;
-  padding: 4px;
-  border-radius: 4px;
-  color: white;
-}

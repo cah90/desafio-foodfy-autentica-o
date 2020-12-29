@@ -21,6 +21,7 @@
       id="name" 
       type="text" 
       name="name" 
+      value="{{user.name}}"
       placeholder="Digite o nome completo"
       >
   </div>
@@ -30,7 +31,8 @@
     <input 
       id="email" 
       type="text" 
-      name="email" 
+      name="email"
+      value="{{user.email}}"
       placeholder="Digite o seu email"
       onblur="Validate.apply(this,'isEmail')"
       >

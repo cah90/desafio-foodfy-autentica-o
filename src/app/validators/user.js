@@ -6,7 +6,10 @@ async function post(req,res,next) {
     
   for(key of keys) {
     if (req.body[key] == "") {
-      return res.send("Please, fill all the fields.")
+      return res.render("admin/users/create", {
+        user: req.body,
+        error: "Preencha todos os campos, por favor."
+      })
     }
   }
 
@@ -17,7 +20,10 @@ async function post(req,res,next) {
   const user = await User.findOne(email)
 
   if (user) {
-    return res.send("This user already exists!")
+    return res.render("admin/users/create", {
+      user: req.body,
+      error: "Usuário já cadastrado."
+    })
   }
 
   next()

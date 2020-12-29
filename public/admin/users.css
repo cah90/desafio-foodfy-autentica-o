@@ -29,3 +29,43 @@ div.is-admin-checkbox input {
 div.is-admin-checkbox p {
   font-weight: 600;
 }
+
+/* VALIDATE ERRORS */
+div.user-container input {
+  margin-bottom: 0;
+}
+
+div.error {
+  background-color: #DC4747;
+  padding: 4px;
+  border-radius: 4px;
+  color: white;
+}
+
+/* MESSAGES */
+@keyframes hidemessage {
+  to {
+    top: -50px;
+    opacity: 0;
+  }
+}
+
+.messages {
+  display: flex;
+  justify-content: center;
+  padding: 50px 40px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 25%;
+  color: white;
+
+  opacity: 1;
+  animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.error-message {
+  background-color: #DC4747;
+  border: 1px solid #DDDDDD; ;
+  border-radius: 4px;
+}
