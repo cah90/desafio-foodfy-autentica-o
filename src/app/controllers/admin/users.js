@@ -5,7 +5,13 @@ module.exports = {
     return res.render("admin/users/create")
   }, 
 
+  list(req, res) {
+    return res.send("Se você chegou aqui é porque deu certo! Parabéns, Cassinhazinha")
+  },
+
   async post(req,res) {
-    return res.send('passed!')
+    const userId = await User.create(req.body)
+
+    return res.redirect('/admin/users')
   }
 }

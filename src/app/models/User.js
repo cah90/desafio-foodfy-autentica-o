@@ -1,6 +1,7 @@
 const db = require("../../config/db")
 const generatePassword = require("password-generator")
 const {hash} = require("bcryptjs")
+const mailer = require("../lib/mailer.js")
 
 module.exports = {
   async findOne(email) {
@@ -44,7 +45,16 @@ module.exports = {
     }
     
     //SEND THE PASSWORD TO THE USER
-
+    await mailer.sendMail({
+      to: data.email,
+      from: "no-reply@foodfy.com.br",
+      subject: "Sua senha temporária",
+      html: `
+        <h2>Essa é a sua senha temporária</h2>
+        <p><strong>${password}</strong></p>
+        <p>Agora você já pode se logar no nosso site!</p>
+      `
+    })
 
     if(results) {
       return results.rows[0].id

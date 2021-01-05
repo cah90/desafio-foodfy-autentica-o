@@ -52,7 +52,7 @@ routes.delete("/admin/chefs", chefs.delete)
 //routes.put("admin/profile", userProfile.put)
 
 //ADMIN-USER
-//routes.get("/admin/users", users.list)
+routes.get("/admin/users", users.list)
 routes.get("/admin/users/create", users.createUser)
 routes.post("/admin/users", Validator.post, users.post)
 //routes.get("/admin/users/:id", users.show)
