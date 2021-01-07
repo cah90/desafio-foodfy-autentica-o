@@ -14,13 +14,25 @@ module.exports = {
     return results.rows[0]
   }, 
 
+  async findUserData(userId) {
+    let query = `
+      SELECT *
+      FROM users
+      WHERE users.id = $1
+    `
+
+    const results = await db.query(query, [userId])
+    return results.rows[0]
+  },
+
   async create(data) {
     const query = `
       INSERT INTO users (
         name,
         email,
-        password
-      ) VALUES ($1, $2, $3)
+        password,
+        is_admin
+      ) VALUES ($1, $2, $3, $4)
       RETURNING id
     `
     //CREATE A PASSWORD
@@ -32,7 +44,8 @@ module.exports = {
     const values = [
       data.name,
       data.email,
-      passwordHash
+      passwordHash,
+      data.is_admin || false
     ]
 
     let results
@@ -59,6 +72,28 @@ module.exports = {
     if(results) {
       return results.rows[0].id
     }
+  }, 
+
+  async update(userData) {
+
+    console.log('this is my userdata', userData)
+
+    const query = `
+    UPDATE users SET
+      name=$1,
+      email=$2,
+      is_admin=$3
+    WHERE id=$4
+    `
+    const values = [
+      userData.name,
+      userData.email,
+      userData.is_admin,
+      userData.id
+    ]   
+
+  return db.query(query, values)
+
   }
 }
 
