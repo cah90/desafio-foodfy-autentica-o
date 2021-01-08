@@ -57,5 +57,5 @@ routes.get("/admin/users/create", users.createUser)
 routes.post("/admin/users", Validator.post, users.post)
 routes.get("/admin/users/:id/edit", users.edit)
 routes.put("/admin/users", users.update)
-//routes.delete("/admin/users", users.delete)
+routes.delete("/admin/users", users.delete)
  

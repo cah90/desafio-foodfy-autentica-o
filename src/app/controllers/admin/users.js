@@ -1,12 +1,18 @@
 const User = require('../../models/User')
 
 module.exports = {
+  async list(req, res) {
+    const allUsers = await User.getAllUsers()
+
+    return res.render("admin/users/allUsers", {allUsers}) 
+  },
+
   createUser(req,res) {
     return res.render('admin/users/create')
   }, 
 
   async post(req,res) {
-    const userId = await User.create(req.body)
+    const user = await User.create(req.body)
 
     return res.redirect('/admin/users')
   },
@@ -16,7 +22,15 @@ module.exports = {
 
     const user = await User.findUserData(userId)
 
-    return res.render('admin/users/edit', {user})
+    if(!user) {
+      tp_vars = {
+        error: "Esse usuário não existe."
+      }
+    } else {
+      tp_vars = {user}
+    }
+    
+    return res.render('admin/users/edit', tp_vars)
   },
 
   async update(req,res) {
@@ -24,14 +38,20 @@ module.exports = {
 
     userData.is_admin = userData.is_admin || false
 
-    const user = await User.update(userData)
+    const insertUser = await User.update(userData)
+    const updatedUser = await User.findUserData(userData.id)
 
-    
+    return res.render('admin/users/edit', {
+      user: updatedUser,
+      success: "Os dados foram atualizados com sucesso!"
+    })
   },
 
-  list(req, res) {
-    return res.send("Se você chegou aqui é porque deu certo! Parabéns, Cassinhazinha")
-  },
+  async delete(req,res) {
+    const userId = req.body.id
 
-  
+    const deleteUser = await User.delete(userId)
+
+    return res.redirect("/admin/users")
+  }
 }

@@ -69,3 +69,27 @@ div.error {
   border: 1px solid #DDDDDD; ;
   border-radius: 4px;
 }
+
+.messages.success-message {
+  background-color: #22B12B;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+}
+
+/* ALL USERS LIST */
+.btn.btn-new {
+  background-color: #7159C1;
+}
+
+.btn.btn-new a {
+  color: white;
+}
+
+.wrapper-users {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.users {
+  margin-bottom: 50px;
+}

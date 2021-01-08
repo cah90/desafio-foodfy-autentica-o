@@ -25,6 +25,16 @@ module.exports = {
     return results.rows[0]
   },
 
+  async getAllUsers() {
+    let query = `
+      SELECT id, name, email
+      FROM users
+    ` 
+
+    const results = await db.query(query)
+    return results.rows
+  },
+
   async create(data) {
     const query = `
       INSERT INTO users (
@@ -76,8 +86,6 @@ module.exports = {
 
   async update(userData) {
 
-    console.log('this is my userdata', userData)
-
     const query = `
     UPDATE users SET
       name=$1,
@@ -94,6 +102,15 @@ module.exports = {
 
   return db.query(query, values)
 
+  },
+
+  async delete(userId) {
+    const query = `
+      DELETE FROM users
+      WHERE users.id = $1
+      `
+
+    return await db.query(query, [userId])
   }
 }
 

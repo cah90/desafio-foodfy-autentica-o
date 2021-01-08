@@ -9,3 +9,4 @@ function linkActive(id, pathname) {
 linkActive('#about', "/about")
 linkActive('#recipes', "/recipes")
 linkActive('#chefs', "/chefs")
+linkActive('#users', "/users")
