@@ -9,7 +9,7 @@
 
 <form action="/admin/users?_method=DELETE" method="post">
   <input type="hidden" name="id" value='{{user.id}}'>
-  <button type="submit" class="btn btn-delete">Deletar</button>
+  <button type="submit" class="btn btn-delete" id="form-delete">Deletar</button>
 </form>
 
 
@@ -52,5 +52,7 @@
 </form>
 
 <script src="/admin/scripts.js"></script>
+<script src="/admin/confirmation.js"></script>
+
 
 {% endblock %}

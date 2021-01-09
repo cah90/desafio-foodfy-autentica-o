@@ -93,3 +93,32 @@ div.error {
 .users {
   margin-bottom: 50px;
 }
+
+.users p.user-name {
+  font-size: 1.12rem;
+}
+
+.users p.user-email {
+  font-size: 0.87rem;
+  color: #777777;
+  padding-top: 4px;
+}
+
+.user-links {
+  padding-top: 16px;
+  font-size: 0.87rem;
+  font-weight: bold;
+  display: flex;
+}
+
+.user-links a:first-child {
+  margin-right: 16px;
+  color: #7166C8;
+}
+
+.user-links button {
+  color: #DC4747;
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;
+}

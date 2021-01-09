@@ -51,7 +51,7 @@ module.exports = {
     const userId = req.body.id
 
     const deleteUser = await User.delete(userId)
-
+    
     return res.redirect("/admin/users")
   }
 }
