@@ -2,9 +2,16 @@ const User = require('../../models/User')
 
 module.exports = {
   async list(req, res) {
-    const allUsers = await User.getAllUsers()
 
-    return res.render("admin/users/allUsers", {allUsers}) 
+    // SHOWING A SUCCESSFUL MESSAGE AFTER DELETELING A USER
+    let tp_vars = {
+      allUsers: await User.getAllUsers()
+    }
+    if(req.query.delete) {
+      tp_vars.success = "O usuário foi removido com sucesso!"
+    }
+
+    return res.render("admin/users/allUsers", tp_vars)
   },
 
   createUser(req,res) {
@@ -21,6 +28,8 @@ module.exports = {
     const userId = req.params.id
 
     const user = await User.findUserData(userId)
+
+    let tp_vars
 
     if(!user) {
       tp_vars = {
@@ -48,10 +57,12 @@ module.exports = {
   },
 
   async delete(req,res) {
-    const userId = req.body.id
 
-    const deleteUser = await User.delete(userId)
+    //let userId = (req.body.id == undefined) ? req.params.id : req.body.id
+    let userId = req.params.id || req.body.id
+
+    await User.delete(userId)
     
-    return res.redirect("/admin/users")
+    return res.redirect("/admin/users?delete=true")
   }
 }

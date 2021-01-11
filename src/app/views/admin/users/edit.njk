@@ -7,9 +7,9 @@
 
 {% block content %}
 
-<form action="/admin/users?_method=DELETE" method="post">
+<form action="/admin/users?_method=DELETE" method="post" id="form-delete">
   <input type="hidden" name="id" value='{{user.id}}'>
-  <button type="submit" class="btn btn-delete" id="form-delete">Deletar</button>
+  <button type="submit" class="btn btn-delete">Deletar</button>
 </form>
 
 

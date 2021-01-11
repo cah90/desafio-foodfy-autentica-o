@@ -116,9 +116,7 @@ div.error {
   color: #7166C8;
 }
 
-.user-links button {
+.user-links a:last-child {
   color: #DC4747;
-  font-weight: bold;
-  background-color: transparent;
-  cursor: pointer;
 }
+
