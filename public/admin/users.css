@@ -3,7 +3,8 @@ button.btn-cancel {
 }
 
 div.user-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 div.user-container div.item input {

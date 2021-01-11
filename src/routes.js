@@ -49,10 +49,11 @@ routes.delete("/admin/chefs", chefs.delete)
 
 //LOGGED USER
 //routes.get("admin/profile", userProfile.index)
-//routes.put("admin/profile", userProfile.put)
+//routes.put("admin/profile", userProfile.put) 
 
 //ADMIN-USER
 routes.get("/admin/users", users.list)
+routes.get("/admin/users/welcome", users.show)
 routes.get("/admin/users/create", users.createUser)
 routes.post("/admin/users", Validator.post, users.post)
 routes.get("/admin/users/:id/edit", users.edit)
