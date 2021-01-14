@@ -3,8 +3,13 @@ const routes = express.Router()
 const chefs = require('./app/controllers/admin/chefs.js')
 const recipes = require('./app/controllers/admin/recipes.js')
 const users = require('./app/controllers/admin/users.js')
+const userProfile = require('./app/controllers/admin/userProfile.js')
+const session = require('./app/controllers/admin/session.js')
 const main = require('./app/controllers/main.js')
-const Validator = require('./app/validators/user.js')
+
+const userValidator = require('./app/Validators/user.js')
+const sessionValidator = require('./app/Validators/session.js')
+
 const multer = require('./app/middlewares/multer')
 
 module.exports = routes
@@ -37,9 +42,9 @@ routes.delete("/admin/chefs", chefs.delete)
 
 //USERS
 //LOGIN / LOGOUT
-//routes.get("/users/login", session.loginForm)
-//routes.post("/users/login", session.login)
-//routes.post("/users/logout", session.logout)
+routes.get("/users/login", session.loginForm)
+routes.post("/users/login", sessionValidator.login, session.login)
+routes.post("/users/logout", session.logout)
 
 //RESET PASSWORD / FORGOT
 // routes.get("/users/forgot-password", session.forgotForm)
@@ -48,14 +53,13 @@ routes.delete("/admin/chefs", chefs.delete)
 // routes.post("/users/password-reset", session.reset)
 
 //LOGGED USER
-//routes.get("admin/profile", userProfile.index)
-//routes.put("admin/profile", userProfile.put) 
+routes.get("/admin/profile", userValidator.index, userProfile.index)
+routes.put("/admin/profile", userValidator.update, userProfile.put) 
 
 //ADMIN-USER
 routes.get("/admin/users", users.list)
-routes.get("/admin/users/welcome", users.show)
 routes.get("/admin/users/create", users.createUser)
-routes.post("/admin/users", Validator.post, users.post)
+routes.post("/admin/users", userValidator.post, users.post)
 routes.get("/admin/users/:id/edit", users.edit)
 routes.put("/admin/users", users.update)
 routes.get("/admin/users/:id/delete", users.delete)

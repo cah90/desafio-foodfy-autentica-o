@@ -121,3 +121,9 @@ div.error {
   color: #DC4747;
 }
 
+/* LOGOUT */
+button.logout {
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}

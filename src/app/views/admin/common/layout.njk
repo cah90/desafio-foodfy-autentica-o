@@ -26,6 +26,12 @@
         <a id="users" href="/admin/users">Usuários</a>
       </div>
 
+      {% if user %}
+      <form action="/users/logout" method="post">
+        <button class="logout" type="submit">SAIR</button>
+      </form>
+      {% endif %}
+
       </div>
     </header>
 

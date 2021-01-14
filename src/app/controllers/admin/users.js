@@ -13,11 +13,7 @@ module.exports = {
 
     return res.render("admin/users/allUsers", tp_vars)
   },
-
-  async show(req, res) {
-    res.render("admin/users/show")
-  },
-
+  
   createUser(req,res) {
     return res.render('admin/users/create')
   }, 
