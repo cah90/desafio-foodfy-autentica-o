@@ -10,6 +10,9 @@ const main = require('./app/controllers/main.js')
 const userValidator = require('./app/Validators/user.js')
 const sessionValidator = require('./app/Validators/session.js')
 
+const { redirectToLogin } = require('./app/middlewares/session.js')
+const { isLoggedRedirectToUsers } = require('./app/middlewares/session.js')
+
 const multer = require('./app/middlewares/multer')
 
 module.exports = routes
@@ -42,7 +45,7 @@ routes.delete("/admin/chefs", chefs.delete)
 
 //USERS
 //LOGIN / LOGOUT
-routes.get("/users/login", session.loginForm)
+routes.get("/users/login", isLoggedRedirectToUsers, session.loginForm)
 routes.post("/users/login", sessionValidator.login, session.login)
 routes.post("/users/logout", session.logout)
 
@@ -58,7 +61,7 @@ routes.put("/admin/profile", userValidator.update, userProfile.put)
 
 //ADMIN-USER
 routes.get("/admin/users", users.list)
-routes.get("/admin/users/create", users.createUser)
+routes.get("/admin/users/create", redirectToLogin, users.createUser)
 routes.post("/admin/users", userValidator.post, users.post)
 routes.get("/admin/users/:id/edit", users.edit)
 routes.put("/admin/users", users.update)

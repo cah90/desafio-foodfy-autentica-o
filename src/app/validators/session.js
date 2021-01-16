@@ -9,7 +9,9 @@ async function login(req,res,next) {
   const user = await User.findOne(email)
 
   if (!user) {
+
     return res.render("admin/session/index", {
+      inputClass: "red-border",
       user: req.body,
       error: "Usuário não cadastrado."
     })
@@ -19,6 +21,7 @@ async function login(req,res,next) {
 
   if(!passed) {
     return res.render("admin/session/index", {
+      inputClass: "red-border",
       user: req.body,
       error: "Senha incorreta."
     })
