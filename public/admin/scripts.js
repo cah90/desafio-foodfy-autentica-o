@@ -1,4 +1,5 @@
 const Validate = {
+  
   apply(input, func) {
     Validate.clearErrors(input)
 

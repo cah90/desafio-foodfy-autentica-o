@@ -8,6 +8,8 @@
   flex-grow: initial;
 }
 
+/* FORM */
+
 div.wrapper {
   max-width: 500px;
 }
@@ -36,4 +38,8 @@ div.links {
   align-items: center;
   justify-content: space-between;
   margin-top: 30px;
+}
+
+div.wrapper input.red-border {
+  border: 1px solid red;
 }
