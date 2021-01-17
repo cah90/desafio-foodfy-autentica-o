@@ -25,7 +25,7 @@ module.exports = {
      `) 
   }, 
 
-  create(data) {
+  create(data, userId) {
     const query = `
     INSERT INTO recipes (
       title,
@@ -33,8 +33,9 @@ module.exports = {
       preparation,
       information,
       chef_id,
+      user_id,
       created_at
-    ) VALUES ($1, $2, $3, $4, $5, $6)
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING id
     `
     const values = [ 
@@ -43,6 +44,7 @@ module.exports = {
       data.preparation,
       data.information,
       data.chef,
+      userId,
       date(Date.now()).iso
     ]
 
@@ -143,5 +145,14 @@ module.exports = {
     WHERE recipes.title ILIKE $1
     ORDER BY recipes.updated_at DESC
     `, values) 
-  } 
+  },
+
+  findByUser(userId) {
+    const query = `
+      SELECT *
+      FROM recipes
+      WHERE recipes.user_id = $1
+    `
+    return db.query(query, [userId])
+  }
 } 

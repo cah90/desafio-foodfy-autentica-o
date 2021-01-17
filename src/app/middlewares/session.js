@@ -10,7 +10,6 @@ module.exports = {
     if(req.session.userId) {
       return res.redirect('/admin/profile')
     }
-
     next()
   }
 

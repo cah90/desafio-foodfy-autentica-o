@@ -4,6 +4,7 @@ module.exports = {
   async index(req, res) {
     const {user} = req
   
+    console.log('req.user', req.user)
     res.render("admin/users/index", {user})
   },
 

@@ -13,6 +13,11 @@ const sessionValidator = require('./app/Validators/session.js')
 const { redirectToLogin } = require('./app/middlewares/session.js')
 const { isLoggedRedirectToUsers } = require('./app/middlewares/session.js')
 
+const { onlyAdmin } = require('./app/middlewares/permissions.js')
+const { canModifyRecipes } = require('./app/middlewares/permissions.js')
+const { canModifyUsers } = require('./app/middlewares/permissions.js')
+const { canDeleteUsers } = require('./app/middlewares/permissions.js')
+
 const multer = require('./app/middlewares/multer')
 
 module.exports = routes
@@ -27,21 +32,21 @@ routes.get("/results", main.results)
 //ADMINISTRATIVE AREA
 //RECIPES
 routes.get("/admin/recipes", recipes.index)
-routes.get("/admin/recipes/create", recipes.create)
+routes.get("/admin/recipes/create", redirectToLogin, recipes.create)
+routes.post("/admin/recipes", multer.array("photos", 5), redirectToLogin, recipes.post)
 routes.get("/admin/recipes/:id", recipes.show)
-routes.get("/admin/recipes/:id/edit", recipes.edit)
-routes.post("/admin/recipes", multer.array("photos", 5), recipes.post)
-routes.put("/admin/recipes", multer.array("photos", 5), recipes.put)
-routes.delete("/admin/recipes", recipes.delete)
+routes.get("/admin/recipes/:id/edit", redirectToLogin, canModifyRecipes, recipes.edit)
+routes.put("/admin/recipes", multer.array("photos", 5), redirectToLogin, canModifyRecipes, recipes.put)
+routes.delete("/admin/recipes", redirectToLogin, canModifyRecipes, recipes.delete)
 
 //CHEFS
 routes.get("/admin/chefs", chefs.index)
-routes.get("/admin/chefs/create", chefs.create)
+routes.get("/admin/chefs/create", redirectToLogin, onlyAdmin, chefs.create)
 routes.get("/admin/chefs/:id", chefs.show)
-routes.get("/admin/chefs/:id/edit", chefs.edit)
-routes.post("/admin/chefs", multer.array("avatar", 1),chefs.post)
-routes.put("/admin/chefs",multer.array("avatar", 1), chefs.put)
-routes.delete("/admin/chefs", chefs.delete)
+routes.get("/admin/chefs/:id/edit", redirectToLogin, onlyAdmin, chefs.edit)
+routes.post("/admin/chefs", multer.array("avatar", 1), redirectToLogin, onlyAdmin, chefs.post)
+routes.put("/admin/chefs",multer.array("avatar", 1), redirectToLogin, onlyAdmin, chefs.put)
+routes.delete("/admin/chefs", redirectToLogin, onlyAdmin, chefs.delete)
 
 //USERS
 //LOGIN / LOGOUT
@@ -56,15 +61,16 @@ routes.post("/users/logout", session.logout)
 // routes.post("/users/password-reset", session.reset)
 
 //LOGGED USER
-routes.get("/admin/profile", userValidator.index, userProfile.index)
-routes.put("/admin/profile", userValidator.update, userProfile.put) 
+routes.get("/admin/profile", redirectToLogin, userValidator.index, userProfile.index)
+routes.put("/admin/profile", redirectToLogin, userValidator.update, userProfile.put) 
 
 //ADMIN-USER
-routes.get("/admin/users", users.list)
-routes.get("/admin/users/create", redirectToLogin, users.createUser)
-routes.post("/admin/users", userValidator.post, users.post)
-routes.get("/admin/users/:id/edit", users.edit)
-routes.put("/admin/users", users.update)
-routes.get("/admin/users/:id/delete", users.delete)
-routes.delete("/admin/users", users.delete)
+routes.get("/admin/users", onlyAdmin, users.list)
+routes.get("/admin/users/create", redirectToLogin, onlyAdmin, users.createUser)
+routes.post("/admin/users", redirectToLogin, onlyAdmin, userValidator.post, users.post)
+
+routes.get("/admin/users/:id/edit", redirectToLogin, canModifyUsers, users.edit)
+routes.put("/admin/users", redirectToLogin, canModifyUsers, users.update)
+routes.get("/admin/users/:id/delete", redirectToLogin, canDeleteUsers, users.delete)
+routes.delete("/admin/users", redirectToLogin, canDeleteUsers, users.delete)
  
