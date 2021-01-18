@@ -55,10 +55,10 @@ routes.post("/users/login", sessionValidator.login, session.login)
 routes.post("/users/logout", session.logout)
 
 //RESET PASSWORD / FORGOT
-// routes.get("/users/forgot-password", session.forgotForm)
-// routes.get("/users/password-reset", session.resetForm)
-// routes.post("/users/forgot-password", session.forgot)
-// routes.post("/users/password-reset", session.reset)
+routes.get("/users/forgot-password", session.forgotForm)
+routes.get("/users/reset-password", session.resetForm)
+routes.post("/users/forgot-password", sessionValidator.forgot, session.forgot)
+routes.post("/users/reset-password", sessionValidator.reset, session.reset)
 
 //LOGGED USER
 routes.get("/admin/profile", redirectToLogin, userValidator.index, userProfile.index)

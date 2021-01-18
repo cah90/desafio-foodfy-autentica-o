@@ -12,7 +12,7 @@ module.exports = {
       } else {
         query = `${query}
         ${key} = '${fields[key]}'
-        WHERE id = ${id}
+        WHERE id = ${userId}
         `
       }
     })

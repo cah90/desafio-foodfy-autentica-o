@@ -4,7 +4,6 @@ module.exports = {
   async index(req, res) {
     const {user} = req
   
-    console.log('req.user', req.user)
     res.render("admin/users/index", {user})
   },
 
@@ -17,7 +16,7 @@ module.exports = {
         email
       })
 
-      return res.render('admin/users/index', {
+      return res.render("admin/users/index", {
         success: "Conta atualizada com sucesso!"
       })
 

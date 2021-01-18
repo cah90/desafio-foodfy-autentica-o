@@ -50,7 +50,7 @@ module.exports = {
     const insertUser = await User.update(userData)
     const updatedUser = await User.findUserData(userData.id)
 
-    return res.render('admin/users/edit', {
+    return res.render('admin/users/index', {
       user: updatedUser,
       success: "Os dados foram atualizados com sucesso!"
     })
