@@ -60,6 +60,7 @@ div.error {
   right: 12px;
   width: 25%;
   color: white;
+  pointer-events: none;
 
   opacity: 1;
   animation: hidemessage 400ms 5s ease-out forwards;
